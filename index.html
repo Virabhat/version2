@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stacked Cards</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f8f8;
+        }
+
+        .card-container {
+            position: relative;
+            width: 200px;
+            height: 300px;
+        }
+
+        .card {
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            background: url('image.png') no-repeat center center;
+            background-size: cover;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+        <div class="card"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const cards = document.querySelectorAll(".card");
+            const angles = [-20, -10, 0, 10, 20]; // องศาการหมุนแต่ละใบ
+            const offsetX = [-40, -20, 0, 20, 40]; // ระยะห่างแนวนอน
+
+            cards.forEach((card, index) => {
+                card.style.transform = `rotate(${angles[index]}deg) translateX(${offsetX[index]}px)`;
+                card.style.zIndex = index;
+            });
+        });
+    </script>
+</body>
+</html>
