@@ -2,9 +2,9 @@ var wheel = $("#wheel");
 
 var border = parseInt(wheel.css("border-width"));
 // var radius = Math.min(window.innerWidth, window.innerHeight) * 0.7 / 2;
-var radius = 250;
+var radius = 300; //250
 var center = radius - border / 2;
-var total = 22;
+var total = 22; // จำนวนไพ่
 var slice = (1 * Math.PI) / total;
 
 TweenLite.set(wheel, {
@@ -34,7 +34,7 @@ Draggable.create(wheel, {
     console.log(this);
   },
   liveSnap: liveSnap,
-  dragResistance: 0.8, //slow rotate
+  dragResistance: 0.6, //slow rotate
   throwResistance: 0.6,
 });
 
@@ -67,7 +67,13 @@ function createBox(i) {
   var box = $("<div class='box box-" + i + "' />")
     .attr("data-num", num)
     .appendTo(wheel);
-  var internalBox = $("<div class='internalBox' />").text(num).appendTo(box);
+
+  // var internalBox = $("<div class='internalBox' />").text(num).appendTo(box);
+
+  //img
+  var image = $(
+    "<img class='image-box' src='/All_Pic/Tarot card/Card.png' alt='Card Image' />"
+  ).appendTo(box);
 
   TweenLite.set(box, {
     rotation: angle + "_rad",
@@ -77,13 +83,13 @@ function createBox(i) {
     y: y,
   });
 
-  TweenLite.set(internalBox, {
-    backgroundColor: "hsl(" + hue + ",100%,50%)",
-  });
+  // TweenLite.set(internalBox, {
+  //     backgroundColor: "hsl(" + hue + ",100%,50%)",
+  // });
 }
 
 const generateTimeline = () => {
-  const boxes = document.querySelectorAll(".box .internalBox");
+  const boxes = document.querySelectorAll(".box .image-box");
 
   // console.log(boxes);
 
