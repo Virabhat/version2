@@ -1,20 +1,32 @@
-body {
+* {
   margin: 0;
+  padding: 0;
+}
+
+body {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   height: 100vh;
+  /* touch-action: none; */
   overflow: hidden;
 }
 
 .size-screen {
-  width: 500px;
-  height: 1200px;
-  background-image: url("https://cdn.glitch.global/127696fc-6c34-436b-a1e2-3d67a03e9eda/bg%20blue.png?v=1738727040082");
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgb(0, 0, 0, 0.2);
-  overflow: hidden;
-  background-size: cover;
+  /* width: 500px;
+  height: 1200px; */
+  /* background-image: url("https://cdn.glitch.global/127696fc-6c34-436b-a1e2-3d67a03e9eda/bg%20blue.png?v=1738727040082"); */
+  /* border-radius: 10px; */
+  /* box-shadow: 0 4px 10px rgb(0, 0, 0, 0.2); */
+  /* background-size: cover; */
+  /* เพิ่มมาใหม่ */
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
 #info {
@@ -31,6 +43,7 @@ body {
   top: 90%;
   left: 50%;
   border-radius: 50%;
+  pointer-events: auto;
 }
 
 .box {
@@ -41,6 +54,7 @@ body {
   top: 0;
   left: 0;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 /* .internalBox {
@@ -70,4 +84,71 @@ body {
   align-items: center;
   justify-content: center;
   object-fit: cover;
+}
+
+#active {
+  display: grid;
+  height: 100vh;
+  max-width: 300px;
+  place-content: center;
+  /* border: 2px solid rebeccapurple; */
+}
+#active img {
+  width: 100%;
+  height: auto;
+}
+.front-card {
+  display: none;
+  transform: rotateY(-90deg);
+  backface-visibility: hidden;
+}
+@media (min-width: 375px) {
+  .size-screen {
+    background-color: rgb(0, 0, 0);
+    overflow: hidden;
+  }
+  #wheel {
+    /* position: absolute; */
+    /* margin-top: 120px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* top: 90%; */
+  }
+}
+@media (min-width: 768px) {
+  .size-screen {
+    background-color: rgb(0, 0, 0);
+    overflow: hidden;
+  }
+  #wheel {
+    /* position: absolute; */
+    /* margin-top: 120px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* top: 90%; */
+  }
+  #active {
+    max-width: 400px;
+    place-content: center;
+  }
+}
+@media (min-width: 1024px) {
+  .size-screen {
+    background-color: salmon;
+  }
+  #wheel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #active {
+    max-width: 700px;
+    place-content: center;
+  }
+  .image-box {
+    width: 200px;
+    height: 290px;
+  }
 }

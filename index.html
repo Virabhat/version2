@@ -1,56 +1,34 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stacked Cards</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f8f8f8;
-        }
+    <title>Godji Card Tarot</title>
+    <link rel="stylesheet" href="style.css">
 
-        .card-container {
-            position: relative;
-            width: 200px;
-            height: 300px;
-        }
+    <!-- link GSPA & Draggable  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        gsap.registerPlugin(Draggable);
+    </script>
 
-        .card {
-            position: absolute;
-            width: 200px;
-            height: 300px;
-            background: url('image.png') no-repeat center center;
-            background-size: cover;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease-in-out;
-        }
-    </style>
 </head>
+
 <body>
-    <div class="card-container">
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
-        <div class="card"></div>
+    <div class="size-screen">
+        <div id="active">
+            <img src="./All_Pic/Tarot card/Meaning/theTree.png" alt="" class="front-card">
+        </div>
+
+        <div id="wheel"></div>
+
+        <div id="object "></div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const cards = document.querySelectorAll(".card");
-            const angles = [-20, -10, 0, 10, 20]; // องศาการหมุนแต่ละใบ
-            const offsetX = [-40, -20, 0, 20, 40]; // ระยะห่างแนวนอน
-
-            cards.forEach((card, index) => {
-                card.style.transform = `rotate(${angles[index]}deg) translateX(${offsetX[index]}px)`;
-                card.style.zIndex = index;
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>

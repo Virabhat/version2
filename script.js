@@ -18,11 +18,14 @@ for (var i = 0; i < total; i++) {
   createBox(i);
 }
 
-Draggable.create(wheel, {
+const draggableWheel = Draggable.create(wheel, {
   type: "rotation",
   throwProps: true,
   inertia: true,
-  bounds: { minRotation: -90, maxRotation: 90 },
+  bounds: {
+    minRotation: -90,
+    maxRotation: 90,
+  },
   onClick: function (e) {
     var num = e.target.dataset.num;
     if (num) {
@@ -34,7 +37,7 @@ Draggable.create(wheel, {
     console.log(this);
   },
   liveSnap: liveSnap,
-  dragResistance: 0.6, //slow rotate
+  dragResistance: 0.3, //slow rotate
   throwResistance: 0.6,
 });
 
@@ -72,7 +75,7 @@ function createBox(i) {
 
   //img
   var image = $(
-    "<img class='image-box' src='/All_Pic/Tarot card/Card.png' alt='Card Image' />"
+    "<img class='image-box' src='./All_Pic/Tarot card/Card.png' alt='Card Image' />"
   ).appendTo(box);
 
   TweenLite.set(box, {
@@ -136,3 +139,67 @@ const generateTimelineSmallBox = () => {
 };
 
 var boxTimeline2 = generateTimelineSmallBox();
+
+let activeCard = null;
+const active = document.getElementById("active");
+const selectCard = document.querySelectorAll(".image-box");
+const frontCard = document.querySelector(".front-card");
+let isCardClicked = false;
+selectCard.forEach((card) => {
+  card.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (isCardClicked) return;
+
+    draggableWheel[0].disable(); //ปิดการหมุน
+    isCardClicked = true;
+    card.style.cursor = "default";
+    if (activeCard && activeCard !== card) {
+      gsap.to(activeCard, {
+        duration: 1,
+        scale: 1,
+        yPercent: 0,
+        ease: "expo.out",
+      });
+    }
+    activeCard = card;
+
+    active.appendChild(card);
+
+    card.classList.add("flip");
+    gsap.to(wheel, {
+      opacity: 0,
+      duration: 0.5,
+      onComplete: () => {
+        wheel.style.visibility = "hidden";
+        wheel.style.display = "none";
+      },
+    });
+    gsap.to(card, {
+      duration: 1,
+      yPercent: 0,
+      bounds: 0,
+      scale: 1,
+      rotation: 0,
+      ease: "expo.out",
+      onComplete: () => {
+        gsap.to(card, {
+          duration: 0.5,
+          rotationY: 90,
+          ease: "power2.inOut",
+
+          onComplete: () => {
+            card.style.visibility = "hidden";
+            card.style.display = "none";
+            frontCard.style.display = "flex";
+
+            gsap.to(frontCard, {
+              duration: 0.5,
+              rotationY: 0,
+              ease: "power2.inOut",
+            });
+          },
+        });
+      },
+    });
+  });
+});
