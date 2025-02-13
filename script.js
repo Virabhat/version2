@@ -145,14 +145,22 @@ const active = document.getElementById("active");
 const selectCard = document.querySelectorAll(".image-box");
 const frontCard = document.querySelector(".front-card");
 let isCardClicked = false;
-selectCard.forEach((card) => {
-  card.addEventListener("click", (e) => {
+
+// selectCard[0].addEventListener("touchend", (e) => {
+//   e.preventDefault();
+//   console.log("index");
+// });
+
+selectCard.forEach((card, index) => {
+  card.addEventListener("touchend", (e) => {
     e.preventDefault();
+    console.log(index);
     if (isCardClicked) return;
 
     draggableWheel[0].disable(); //ปิดการหมุน
     isCardClicked = true;
     card.style.cursor = "default";
+
     if (activeCard && activeCard !== card) {
       gsap.to(activeCard, {
         duration: 1,
@@ -170,7 +178,6 @@ selectCard.forEach((card) => {
       opacity: 0,
       duration: 0.5,
       onComplete: () => {
-        wheel.style.visibility = "hidden";
         wheel.style.display = "none";
       },
     });
@@ -188,7 +195,6 @@ selectCard.forEach((card) => {
           ease: "power2.inOut",
 
           onComplete: () => {
-            card.style.visibility = "hidden";
             card.style.display = "none";
             frontCard.style.display = "flex";
 
@@ -203,3 +209,13 @@ selectCard.forEach((card) => {
     });
   });
 });
+// const gg = document.querySelector(".gg");
+// gg.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   gsap.to(gg, {
+//     duration: 0.5,
+//     rotationY: 90,
+//     ease: "power2.inOut",
+//   });
+//   console.log("gg");
+// });
