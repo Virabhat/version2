@@ -89,13 +89,13 @@ body {
 #active {
   display: grid;
   height: 100vh;
-  max-width: 300px;
+  /* max-width: clamp(100px, 50%, 350px); */
+  max-width: min(60vw, 300px);
   place-content: center;
 }
 #active img {
   width: 100%;
   height: auto;
-  /* display: block; */
 }
 .front-card {
   display: none;
@@ -114,11 +114,19 @@ body {
     overflow: hidden;
   }
   #wheel {
-    /* position: absolute; */
-    /* margin-top: 120px; */
     display: flex;
     justify-content: center;
     align-items: center;
-    /* top: 90%; */
+    /* z-index: -999; */
+  }
+}
+@media (min-width: 768px) {
+  .size-screen {
+    background-color: rgb(4, 241, 24);
+  }
+}
+@media (min-width: 1024px) {
+  .size-screen {
+    background-color: rgb(154, 4, 241);
   }
 }
