@@ -1,5 +1,5 @@
 var wheel = $("#wheel");
-
+let isWheelSpun = false;
 var border = parseInt(wheel.css("border-width"));
 // var radius = Math.min(window.innerWidth, window.innerHeight) * 0.7 / 2;
 var radius = 300; //250
@@ -21,17 +21,20 @@ for (var i = 0; i < total; i++) {
 const draggableWheel = Draggable.create(wheel, {
   type: "rotation",
   throwProps: true,
+  allowEventDefault: true,
   inertia: true,
   bounds: {
     minRotation: -90,
     maxRotation: 90,
   },
-  onClick: function (e) {
-    var num = e.target.dataset.num;
-    if (num) {
-      console.log("Clicked Box " + num);
-    }
-  },
+  // onClick: function (e) {
+  //   console.log("Clicked Wheel");
+  //   // console.log(e.target);
+  //   var num = e.target.dataset.num;
+  //   if (num) {
+  //     console.log("Clicked Box " + num);
+  //   }
+  // },
   onThrowUpdate: function () {
     $("#object").text(this);
     console.log(this);
@@ -146,15 +149,17 @@ const selectCard = document.querySelectorAll(".image-box");
 const frontCard = document.querySelector(".front-card");
 let isCardClicked = false;
 
-// selectCard[0].addEventListener("touchend", (e) => {
+// selectCard[1].addEventListener("click", (e) => {
 //   e.preventDefault();
 //   console.log("index");
 // });
+// console.log(selectCard);
 
 selectCard.forEach((card, index) => {
-  card.addEventListener("touchend", (e) => {
+  card.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log(index);
+    console.log("Card clicked:", index);
+    // if (!isWheelSpun) return;
     if (isCardClicked) return;
 
     draggableWheel[0].disable(); //ปิดการหมุน

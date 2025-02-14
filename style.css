@@ -82,6 +82,8 @@ body {
   align-items: center;
   justify-content: center;
   object-fit: cover;
+  touch-action: auto;
+  pointer-events: auto;
 }
 
 #active {
@@ -93,11 +95,11 @@ body {
 #active img {
   width: 100%;
   height: auto;
+  /* display: block; */
 }
 .front-card {
   display: none;
   transform: rotateY(-90deg);
-  backface-visibility: hidden;
 }
 
 @media (min-width: 320px) {
