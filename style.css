@@ -15,10 +15,15 @@ body {
 .size-screen {
   /* width: 500px;
   height: 1200px; */
-  /* background-image: url("https://cdn.glitch.global/127696fc-6c34-436b-a1e2-3d67a03e9eda/bg%20blue.png?v=1738727040082"); */
+  width: 100%;
+  height: 100%;
+  background-image: url("https://cdn.glitch.global/127696fc-6c34-436b-a1e2-3d67a03e9eda/bg%20blue.png?v=1738727040082");
   /* border-radius: 10px; */
   /* box-shadow: 0 4px 10px rgb(0, 0, 0, 0.2); */
-  /* background-size: cover; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
   /* เพิ่มมาใหม่ */
   width: 100%;
   height: 100vh;
@@ -26,7 +31,7 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  background-color: red;
+  overflow: hidden;
 }
 
 #info {
@@ -104,7 +109,7 @@ body {
 
 @media (min-width: 320px) {
   .size-screen {
-    background-color: rgb(255, 136, 0);
+    /* background-color: rgb(255, 136, 0); */
     overflow: hidden;
   }
 }
@@ -122,11 +127,11 @@ body {
 }
 @media (min-width: 768px) {
   .size-screen {
-    background-color: rgb(4, 241, 24);
+    /* background-color: rgb(4, 241, 24); */
   }
 }
 @media (min-width: 1024px) {
   .size-screen {
-    background-color: rgb(154, 4, 241);
+    /* background-color: rgb(154, 4, 241); */
   }
 }
