@@ -198,7 +198,7 @@ selectCard.forEach((card, index) => {
             card.classList.add("flip");
             gsap.to(active, {
               duration: 0.7,
-              scale: 2,
+              scale: 1.2,
               ease: "power4.out",
             });
           },
