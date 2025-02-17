@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Godji Card Tarot</title>
+    <link rel="stylesheet" href="/tay/tay.css">
+
+    <!-- link GSAP & Draggable  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script>
+        gsap.registerPlugin(Draggable);
+    </script> -->
+
+</head>
+
+<body>
+    <div class="size-screen">
+        
+
+        <div id="active">
+            <img src="./All_Pic/Tarot card/Meaning/theTree.png" alt="Tarot Card" class="front-card">
+            <div id="card-container"></div>
+        </div>
+        <!-- <div>
+            <img src="./All_Pic/Tarot card/Meaning/theTree.png" alt="Tarot Card" style="width: 200px;" class="gg">
+        </div> -->
+        <div id="wheel"></div>
+
+        <button id="random-btn">สุ่มการ์ด</button>
+        <div id="card-container"></div>
+
+        <div id="object"></div> <!-- Remove extra space -->
+    </div>
+
+    <script src="/tay/tay.js"></script>
+    <script src="/tay/card.js"></script>
+</body>
+
+</html>
