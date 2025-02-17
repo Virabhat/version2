@@ -149,6 +149,16 @@ const selectCard = document.querySelectorAll(".image-box");
 const frontCard = document.querySelector(".front-card");
 let isCardClicked = false;
 
+let cardsData = [];
+
+fetch("cards.json")
+  .then((response) => response.json())
+  .then((data) => {
+    cardsData = data;
+  })
+  .catch((error) => console.error("Error loading JSON:", error));
+
+
 // selectCard[1].addEventListener("click", (e) => {
 //   e.preventDefault();
 //   console.log("index");
@@ -159,10 +169,10 @@ selectCard.forEach((card, index) => {
   card.addEventListener("click", (e) => {
     e.preventDefault();
     console.log("Card clicked:", index);
-    // if (!isWheelSpun) return;
+
     if (isCardClicked) return;
 
-    draggableWheel[0].disable(); //ปิดการหมุน
+    draggableWheel[0].disable(); // ปิดการหมุน
     isCardClicked = true;
     card.style.cursor = "default";
 
@@ -177,8 +187,8 @@ selectCard.forEach((card, index) => {
     activeCard = card;
 
     active.appendChild(card);
-
     card.classList.add("flip");
+
     gsap.to(wheel, {
       opacity: 0,
       duration: 0.5,
@@ -186,6 +196,7 @@ selectCard.forEach((card, index) => {
         wheel.style.display = "none";
       },
     });
+
     gsap.to(card, {
       duration: 1,
       yPercent: 0,
@@ -198,7 +209,6 @@ selectCard.forEach((card, index) => {
           duration: 0.5,
           rotationY: 90,
           ease: "power2.inOut",
-
           onComplete: () => {
             card.style.display = "none";
             frontCard.style.display = "flex";
@@ -208,12 +218,39 @@ selectCard.forEach((card, index) => {
               rotationY: 0,
               ease: "power2.inOut",
             });
+
+            // 🔥 แสดงข้อมูลของการ์ดจาก `cards.json`
+            displayCardDetails(index);
           },
         });
       },
     });
   });
 });
+
+function displayCardDetails(index) {
+  if (!cardsData || cardsData.length === 0) {
+    console.error("No card data available");
+    return;
+  }
+
+  const cardInfo = cardsData[index];
+
+  if (!cardInfo) {
+    console.error("Invalid card index");
+    return;
+  }
+
+  const cardDetails = document.getElementById("card-details");
+  cardDetails.innerHTML = `
+    <h2>${cardInfo.name}</h2>
+    <img src="${cardInfo.image}" alt="${cardInfo.name}" style="width: 200px;">
+    <p>${cardInfo.description}</p>
+  `;
+}
+
+
+
 // const gg = document.querySelector(".gg");
 // gg.addEventListener("click", (e) => {
 //   e.preventDefault();
