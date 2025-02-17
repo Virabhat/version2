@@ -186,7 +186,7 @@ selectCard.forEach((card, index) => {
       })
 
       .set(card, { yPercent: 0 })
-      .set(active, { opacity: 0, display: "block" })
+      .set(active, { opacity: 0, display: "grid" })
 
       //เฟดและ ขยายdiv active
       .to(active, { opacity: 1, duration: 1, ease: "power4.out" })
