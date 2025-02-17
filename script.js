@@ -158,32 +158,51 @@ let isCardClicked = false;
 selectCard.forEach((card, index) => {
   card.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log("Card clicked:", index);
     // if (!isWheelSpun) return;
     if (isCardClicked) return;
 
+    console.log("Card clicked:", index);
     draggableWheel[0].disable(); //ปิดการหมุน
     isCardClicked = true;
     card.style.cursor = "default";
 
-    if (activeCard && activeCard !== card) {
-      gsap.to(activeCard, {
-        duration: 1,
-        scale: 1,
-        yPercent: 0,
-        ease: "expo.out",
-      });
-    }
+    // test
+    // if (activeCard && activeCard !== card) {
+    //   gsap.to(activeCard, {
+    //     duration: 1,
+    //     scale: 1,
+    //     yPercent: 0,
+    //     ease: "expo.out",
+    //   });
+    // }
+
     activeCard = card;
-
     active.appendChild(card);
+    gsap.set(active, { opacity: 0, display: "block" });
 
-    card.classList.add("flip");
     gsap.to(wheel, {
       opacity: 0,
-      duration: 0.5,
+      duration: 1,
+      delay: 0.5,
+      ease: "power4.out",
       onComplete: () => {
-        wheel.style.display = "none";
+        gsap.to(active, {
+          opacity: 1,
+          duration: 1,
+          ease: "power4.out",
+          onStart: () => {
+            console.log("เริ่มโชว์ active");
+          },
+          onComplete: () => {
+            console.log("โชว์ active สำเร็จ"); // Debug
+            card.classList.add("flip");
+            gsap.to(active, {
+              duration: 0.7,
+              scale: 2,
+              ease: "power4.out",
+            });
+          },
+        });
       },
     });
     gsap.to(card, {
@@ -192,17 +211,16 @@ selectCard.forEach((card, index) => {
       bounds: 0,
       scale: 1,
       rotation: 0,
+      delay: 3,
       ease: "expo.out",
       onComplete: () => {
         gsap.to(card, {
           duration: 0.5,
           rotationY: 90,
           ease: "power2.inOut",
-
           onComplete: () => {
             card.style.display = "none";
             frontCard.style.display = "flex";
-
             gsap.to(frontCard, {
               duration: 0.5,
               rotationY: 0,
@@ -214,13 +232,3 @@ selectCard.forEach((card, index) => {
     });
   });
 });
-// const gg = document.querySelector(".gg");
-// gg.addEventListener("click", (e) => {
-//   e.preventDefault();
-//   gsap.to(gg, {
-//     duration: 0.5,
-//     rotationY: 90,
-//     ease: "power2.inOut",
-//   });
-//   console.log("gg");
-// });

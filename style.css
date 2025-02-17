@@ -2,6 +2,23 @@
   margin: 0;
   padding: 0;
 }
+@font-face {
+  font-family: "PTT Bold";
+  src: url("/fonts/PTT45Pride-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "PTT Regular";
+  src: url("/fonts/PTT45Pride-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+:root {
+  --font-ptt-bold: "PTT Bold", sans-serif;
+  --font-ptt-regular: "PTT Regular", sans-serif;
+}
 
 body {
   display: flex;
@@ -10,6 +27,7 @@ body {
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  font-family: var(--font-ptt-regular);
 }
 
 .size-screen {
@@ -81,7 +99,7 @@ body {
 }
 
 .image-box {
-  width: 120px;
+  width: 100%;
   height: 170px;
   display: flex;
   align-items: center;
@@ -89,18 +107,21 @@ body {
   object-fit: cover;
   touch-action: auto;
   pointer-events: auto;
+  border-radius: 15px;
 }
 
 #active {
   display: grid;
   height: 100vh;
   /* max-width: clamp(100px, 50%, 350px); */
-  max-width: min(60vw, 300px);
+  /* max-width: min(50vw, 120px); */
+  width: 30vw;
   place-content: center;
 }
 #active img {
   width: 100%;
   height: auto;
+  /* 803*1223 */
 }
 .front-card {
   display: none;
