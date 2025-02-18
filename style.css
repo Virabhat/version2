@@ -136,10 +136,10 @@ body {
   text-align: center;
 }
 .name_card {
-  font-size: 40px;
+  font-size: 16px;
 }
 .meaning {
-  font-size: 1rem;
+  font-size: 14px;
 }
 @media (min-width: 320px) {
   .size-screen {

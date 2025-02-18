@@ -1,3 +1,5 @@
+import { cardSelect } from "./card.js";
+
 var wheel = $("#wheel");
 let isWheelSpun = false;
 var border = parseInt(wheel.css("border-width"));
@@ -169,6 +171,9 @@ selectCard.forEach((card, index) => {
     card.style.cursor = "default";
 
     const tl = gsap.timeline(); //ใช้timeline
+
+    meaning.innerHTML = cardSelect.description;
+    cardName.innerHTML = cardSelect.name;
 
     tl.to(card, {
       yPercent: -20,
