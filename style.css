@@ -118,7 +118,7 @@ body {
   place-content: center;
   justify-items: center;
   gap: 30px;
-  grid-template-rows: repeat(3, 0.2fr);
+  /* grid-template-rows: repeat(3, 0.2fr); */
 }
 #active img {
   width: 100%;
