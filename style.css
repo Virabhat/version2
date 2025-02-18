@@ -66,6 +66,7 @@ body {
   top: 90%;
   left: 50%;
   border-radius: 50%;
+  /* opacity: 0; */
 }
 
 .box {
@@ -112,11 +113,12 @@ body {
 
 #active {
   display: grid;
-  height: 100vh;
-  /* max-width: clamp(100px, 50%, 350px); */
+  max-height: 80vh;
   max-width: min(50vw, 280px);
-  /* width: 30vw; */
   place-content: center;
+  justify-items: center;
+  gap: 30px;
+  grid-template-rows: repeat(3, 0.2fr);
 }
 #active img {
   width: 100%;
@@ -127,7 +129,18 @@ body {
   display: none;
   transform: rotateY(-90deg);
 }
-
+.meaning,
+.name_card {
+  display: none;
+  opacity: 0;
+  text-align: center;
+}
+.name_card {
+  font-size: 40px;
+}
+.meaning {
+  font-size: 1rem;
+}
 @media (min-width: 320px) {
   .size-screen {
     /* background-color: rgb(255, 136, 0); */

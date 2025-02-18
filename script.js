@@ -147,6 +147,9 @@ let activeCard = null;
 const active = document.getElementById("active");
 const selectCard = document.querySelectorAll(".image-box");
 const frontCard = document.querySelector(".front-card");
+const meaning = document.querySelector(".meaning");
+const cardName = document.querySelector(".name_card");
+
 let isCardClicked = false;
 // selectCard[1].addEventListener("click", (e) => {
 //   e.preventDefault();
@@ -202,13 +205,30 @@ selectCard.forEach((card, index) => {
 
       .set(card, { display: "none" })
       .set(frontCard, { display: "flex" })
+      .set(meaning, { display: "flex" })
+      .set(cardName, { display: "flex" })
 
       .to(frontCard, {
         duration: 0.35,
         yPercent: 0,
         rotationY: 0,
         ease: "back.out(2)",
-      });
+      })
+
+      .to(cardName, {
+        opacity: 1,
+        duration: 0.8,
+        ease: "power2.out",
+      })
+      .to(
+        meaning,
+        {
+          opacity: 1,
+          duration: 0.8,
+          ease: "power2.out",
+        },
+        "<"
+      );
 
     //แบบเก่า
 
