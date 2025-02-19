@@ -4,14 +4,16 @@
 }
 @font-face {
   font-family: "PTT Bold";
-  src: url("/fonts/PTT45Pride-Bold.ttf") format("truetype");
+  src: url("https://xgame.wyndigitalgroup.com/cardgame/fonts/PTT45Pride-Bold.ttf")
+    format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: "PTT Regular";
-  src: url("/fonts/PTT45Pride-Regular.ttf") format("truetype");
+  src: url("https://xgame.wyndigitalgroup.com/cardgame/fonts/PTT45Pride-Regular.ttf")
+    format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -29,7 +31,9 @@ body {
   overflow: hidden;
   font-family: var(--font-ptt-regular);
 }
-
+h3 {
+  font-family: var(--font-ptt-bold);
+}
 .size-screen {
   /* width: 500px;
   height: 1200px; */
@@ -130,7 +134,8 @@ body {
   transform: rotateY(-90deg);
 }
 .meaning,
-.name_card {
+.name_card,
+.btn-meaning {
   display: none;
   opacity: 0;
   text-align: center;
