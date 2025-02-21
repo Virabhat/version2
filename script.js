@@ -3,17 +3,17 @@ import { cardSelect } from "./card.js";
 var wheel = $("#wheel");
 let isWheelSpun = false;
 var border = parseInt(wheel.css("border-width"));
-// var radius = (Math.min(window.innerWidth, window.innerHeight) * 0.7) / 4;
-var radius = 300; //250
+// var radius = (Math.min(window.innerWidth, window.innerHeight) * 0.7) / 5;
+var radius = 280; //250
 var center = radius - border / 2;
 var total = 22; // จำนวนไพ่ฟ
-var slice = (1.2 * Math.PI) / total;
+var slice = (2 * Math.PI) / total; // pi =180 pi*2 =360
 
 TweenLite.set(wheel, {
   width: radius * 2 - border,
   height: radius * 2 - border,
   xPercent: -50,
-  yPercent: -50,
+  yPercent: -65,
 });
 
 for (var i = 0; i < total; i++) {
@@ -25,18 +25,11 @@ const draggableWheel = Draggable.create(wheel, {
   throwProps: true,
   allowEventDefault: true,
   inertia: true,
-  bounds: {
-    minRotation: -90,
-    maxRotation: 90,
-  },
-  // onClick: function (e) {
-  //   console.log("Clicked Wheel");
-  //   // console.log(e.target);
-  //   var num = e.target.dataset.num;
-  //   if (num) {
-  //     console.log("Clicked Box " + num);
-  //   }
+  // bounds: {
+  //   minRotation: -360,
+  //   maxRotation: 360,
   // },
+
   onThrowUpdate: function () {
     $("#object").text(this);
     console.log(this);
@@ -69,12 +62,14 @@ function createBox(i) {
   var num = i + 1;
   var hue = (i / total) * 360;
   var angle = i * slice - 1.5;
+  // var angle = i * slice - Math.PI / 2;
 
   var x = center + radius * Math.sin(angle);
   var y = center - radius * Math.cos(angle);
 
   var box = $("<div class='box box-" + i + "' />")
     .attr("data-num", num)
+    .css("z-index", total - i)
     .appendTo(wheel);
 
   // var internalBox = $("<div class='internalBox' />").text(num).appendTo(box);
@@ -105,7 +100,6 @@ const generateTimeline = () => {
   const boxTimeline = gsap.timeline({ paused: true });
 
   [...boxes].map((box) => {
-    // console.log(box);
     //  Disable card popup
     // boxTimeline.to(
     //   box,

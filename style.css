@@ -104,14 +104,17 @@ h3 {
 }
 
 .image-box {
-  /* width: 100%; */
-  height: 170px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  object-fit: cover;
+  /* height: 170px; */
+  /* display: block; */
+  width: 100%;
+  height: 200px;
+  display: block;
+  object-fit: contain;
+  object-position: center;
   touch-action: auto;
   pointer-events: auto;
+  filter: drop-shadow(4px 6px 8px #00000074);
+
   /* border-radius: 15px; */
 }
 
@@ -132,6 +135,7 @@ h3 {
   height: auto;
   margin: 10px;
   place-self: center;
+
   /* 803*1223 */
 }
 .front-card {
