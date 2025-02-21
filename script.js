@@ -1,17 +1,17 @@
 import { cardSelect } from "./card.js";
 
-function LoadOnetime() {
-  if (sessionStorage.getItem("isLoad")) return; // ถ้าเคยโหลดแล้ว ให้ออกจากฟังก์ชัน
+// function LoadOnetime() {
+//   if (sessionStorage.getItem("isLoad")) return; // ถ้าเคยโหลดแล้ว ให้ออกจากฟังก์ชัน
 
-  sessionStorage.setItem("isLoad", "true"); // บันทึกว่าโหลดแล้ว
-  window.location.href =
-    window.location.origin +
-    window.location.pathname +
-    "?nocache=" +
-    new Date().getTime();
-}
+//   sessionStorage.setItem("isLoad", "true"); // บันทึกว่าโหลดแล้ว
+//   window.location.href =
+//     window.location.origin +
+//     window.location.pathname +
+//     "?nocache=" +
+//     new Date().getTime();
+// }
 
-LoadOnetime();
+// LoadOnetime();
 
 var wheel = $("#wheel");
 let isWheelSpun = false;
@@ -159,13 +159,13 @@ const generateTimelineSmallBox = () => {
 
 var boxTimeline2 = generateTimelineSmallBox();
 
-let activeCard = null;
-const active = document.getElementById("active");
-const selectCard = document.querySelectorAll(".image-box");
+const cardContainer = document.getElementById("card-container");
+const cards = document.querySelectorAll(".image-box");
 const frontCard = document.querySelector(".front-card");
 const meaning = document.querySelector(".meaning");
 const cardName = document.querySelector(".name_card");
 const btn = document.querySelector(".btn-meaning");
+const containerInfo = document.querySelector(".container-info ");
 let isCardClicked = false;
 // selectCard[1].addEventListener("click", (e) => {
 //   e.preventDefault();
@@ -173,8 +173,8 @@ let isCardClicked = false;
 // });
 // console.log(selectCard);
 
-selectCard.forEach((card, index) => {
-  card.addEventListener("click", (e) => {
+cards.forEach((selectCard, index) => {
+  selectCard.addEventListener("click", (e) => {
     e.preventDefault();
     // if (!isWheelSpun) return;
     if (isCardClicked) return;
@@ -182,14 +182,14 @@ selectCard.forEach((card, index) => {
     console.log("Card clicked:", index);
     draggableWheel[0].disable(); //ปิดการหมุน
     isCardClicked = true;
-    card.style.cursor = "default";
+    selectCard.style.cursor = "default";
 
     const tl = gsap.timeline(); //ใช้timeline
 
     meaning.innerHTML = cardSelect.description;
     cardName.innerHTML = cardSelect.name;
 
-    tl.to(card, {
+    tl.to(selectCard, {
       yPercent: -20,
       duration: 0.3,
       ease: "power2.out",
@@ -202,19 +202,18 @@ selectCard.forEach((card, index) => {
         delay: 0.5,
         ease: "power4.out",
         onComplete: () => {
-          activeCard = card;
-          active.appendChild(card);
+          cardContainer.appendChild(selectCard);
         },
       })
 
       .set(wheel, { display: "none" })
-      .set(card, { yPercent: 0 })
-      .set(active, { opacity: 0, display: "grid" })
+      .set(selectCard, { yPercent: 0 })
+      .set(cardContainer, { opacity: 0, display: "flex" })
 
       //เฟดและ ขยายdiv active
-      .to(active, { opacity: 1, duration: 1, ease: "power4.out" })
-      .to(active, { duration: 0.7, scale: 1.2, ease: "power4.out" })
-      .to(card, {
+      .to(cardContainer, { opacity: 1, duration: 1, ease: "power4.out" })
+      .to(cardContainer, { duration: 0.7, scale: 1.1, ease: "power4.out" })
+      .to(selectCard, {
         scale: 1.1,
         duration: 0.7,
         repeat: -1,
@@ -222,9 +221,9 @@ selectCard.forEach((card, index) => {
         ease: "sine.inOut",
       });
     // คลิกcard แล้วเล่นอนิมเชั่นถัดไป
-    card.addEventListener("click", (e) => {
+    selectCard.addEventListener("click", (e) => {
       e.preventDefault();
-      const currentTweens = gsap.getTweensOf(card);
+      const currentTweens = gsap.getTweensOf(selectCard);
 
       // ถ้ามีอนิเมชั่นทำงานอยู่ให้หยุดมันก่อน
       if (currentTweens.length > 0) {
@@ -232,21 +231,33 @@ selectCard.forEach((card, index) => {
           tween.kill(); // หยุดอนิเมชั่น
         });
       }
+      gsap.to(cardContainer, {
+        scale: 1,
+        duration: 1,
+        ease: "power2.out",
+        // transform: "translateY(-10%)",
+      });
 
       const tl = gsap.timeline();
-      tl.to(card, {
+
+      tl.to(containerInfo, {
+        opacity: 1,
         duration: 0.5,
-        scale: 1,
-        ease: "sine.inOut",
+        ease: "power2.out",
       })
+        .to(selectCard, {
+          duration: 0.5,
+          scale: 1,
+          ease: "sine.inOut",
+        })
         //พลิกจากหลังไปหน้า
-        .to(card, {
+        .to(selectCard, {
           duration: 0.5,
           rotationY: 90,
           ease: "expo.inOut",
         })
 
-        .set(card, { display: "none" })
+        .set(selectCard, { display: "none" })
         .set(frontCard, { display: "flex" })
         .set(cardName, { display: "flex" })
         .set(btn, { display: "flex" })
@@ -291,60 +302,4 @@ selectCard.forEach((card, index) => {
       });
     });
   });
-  //แบบเก่า
-
-  // activeCard = card;
-  // active.appendChild(card);
-  // gsap.set(active, { opacity: 0, display: "block" });
-
-  // gsap.to(wheel, {
-  //   opacity: 0,
-  //   duration: 1,
-  //   delay: 0.5,
-  //   ease: "power4.out",
-  //   onComplete: () => {
-  //     gsap.to(active, {
-  //       opacity: 1,
-  //       duration: 1,
-  //       ease: "power4.out",
-  //       onStart: () => {
-  //         console.log("เริ่มโชว์ active");
-  //       },
-  //       onComplete: () => {
-  //         console.log("โชว์ active สำเร็จ"); // Debug
-  //         card.classList.add("flip");
-  //         gsap.to(active, {
-  //           duration: 0.7,
-  //           scale: 1.2,
-  //           ease: "power4.out",
-  //         });
-  //       },
-  //     });
-  //   },
-  // });
-  // gsap.to(card, {
-  //   duration: 1,
-  //   yPercent: 0,
-  //   bounds: 0,
-  //   scale: 1,
-  //   rotation: 0,
-  //   delay: 3,
-  //   ease: "expo.out",
-  //   onComplete: () => {
-  //     gsap.to(card, {
-  //       duration: 0.5,
-  //       rotationY: 90,
-  //       ease: "power2.inOut",
-  //       onComplete: () => {
-  //         card.style.display = "none";
-  //         frontCard.style.display = "flex";
-  //         gsap.to(frontCard, {
-  //           duration: 0.5,
-  //           rotationY: 0,
-  //           ease: "power2.inOut",
-  //         });
-  //       },
-  //     });
-  //   },
-  // });
 });
