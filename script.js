@@ -221,7 +221,7 @@ cards.forEach((selectCard, index) => {
         ease: "sine.inOut",
       });
     // คลิกcard แล้วเล่นอนิมเชั่นถัดไป
-    selectCard.addEventListener("click", (e) => {
+    selectCard.addEventListener("pointerup", (e) => {
       e.preventDefault();
       const currentTweens = gsap.getTweensOf(selectCard);
 
