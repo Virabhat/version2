@@ -118,9 +118,10 @@ h3 {
 }
 
 #card-container {
-  display: grid;
+  display: flex;
   height: 100vh;
-  max-width: clamp(200px, 50%, 450px);
+  max-width: clamp(200px, 50%, 250px);
+  width: 100%;
   flex-direction: column;
   place-content: center;
   gap: 15px;
@@ -130,6 +131,9 @@ h3 {
 #card-container img {
   width: 100%;
   height: auto;
+  max-width: 300px;
+  margin: 10px;
+  place-self: center;
   /* 803*1223 */
 }
 .front-card {
@@ -163,8 +167,9 @@ h3 {
 }
 .meaning {
   font-size: 14px;
-  /* height: 100px;
-  overflow: scroll; */
+  height: 100px;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 .btn-meaning {
   padding: 10px;
@@ -194,7 +199,20 @@ h3 {
   }
   #card-container {
     gap: 25px;
-    width: 500px;
+  }
+  .name_card {
+    font-size: 25px;
+  }
+
+  .meaning,
+  .btn-meaning {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  #card-container {
+    gap: 10px;
+    width: 400px;
   }
   .name_card {
     font-size: 30px;
@@ -205,16 +223,18 @@ h3 {
     font-size: 25px;
   }
 }
-@media (min-width: 1024px) {
+/* @media (orientation: landscape) {
+  .size-screen {
+  }
   #card-container {
-    gap: 30px;
+    width: 150px;
   }
-  .name_card {
-    font-size: 35px;
+  h3 {
+    width: 500px;
+    place-self: center;
   }
-
-  .meaning,
-  .btn-meaning {
-    font-size: 30px;
+  .meaning {
+    width: 500px;
+    place-self: center;
   }
-}
+} */
