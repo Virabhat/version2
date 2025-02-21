@@ -1,26 +1,13 @@
 import { cardSelect } from "./card.js";
 
-// function LoadOnetime() {
-//   if (sessionStorage.getItem("isLoad")) return; // ถ้าเคยโหลดแล้ว ให้ออกจากฟังก์ชัน
-
-//   sessionStorage.setItem("isLoad", "true"); // บันทึกว่าโหลดแล้ว
-//   window.location.href =
-//     window.location.origin +
-//     window.location.pathname +
-//     "?nocache=" +
-//     new Date().getTime();
-// }
-
-// LoadOnetime();
-
 var wheel = $("#wheel");
 let isWheelSpun = false;
 var border = parseInt(wheel.css("border-width"));
-// var radius = Math.min(window.innerWidth, window.innerHeight) * 0.7 / 2;
+// var radius = (Math.min(window.innerWidth, window.innerHeight) * 0.7) / 4;
 var radius = 300; //250
 var center = radius - border / 2;
-var total = 22; // จำนวนไพ่
-var slice = (1 * Math.PI) / total;
+var total = 22; // จำนวนไพ่ฟ
+var slice = (1.2 * Math.PI) / total;
 
 TweenLite.set(wheel, {
   width: radius * 2 - border,
