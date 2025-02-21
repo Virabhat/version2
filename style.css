@@ -4,14 +4,16 @@
 }
 @font-face {
   font-family: "PTT Bold";
-  src: url("fonts/PTT45Pride-Bold.ttf") format("truetype");
+  src: url("https://xgame.wyndigitalgroup.com/cardgame/fonts/PTT45Pride-Bold.ttf")
+    format("truetype");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: "PTT Regular";
-  src: url("fonts/PTT45Pride-Regular.ttf") format("truetype");
+  src: url("https://xgame.wyndigitalgroup.com/cardgame/fonts/PTT45Pride-Regular.ttf")
+    format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -28,27 +30,24 @@ body {
   height: 100vh;
   overflow: hidden;
   font-family: var(--font-ptt-regular);
-  background-image: url("https://cdn.glitch.global/127696fc-6c34-436b-a1e2-3d67a03e9eda/bg%20blue.png?v=1738727040082");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-button,
-p {
-  font-family: var(--font-ptt-regular);
-  text-wrap: balance;
 }
 h3 {
   font-family: var(--font-ptt-bold);
-  text-wrap: balance;
 }
 .size-screen {
   /* width: 500px;
   height: 1200px; */
   width: 100%;
-  /* max-width: 1024px; */
-  margin: 0 auto;
+  height: 100%;
+  background-image: url("https://cdn.glitch.global/127696fc-6c34-436b-a1e2-3d67a03e9eda/bg%20blue.png?v=1738727040082");
+  /* border-radius: 10px; */
+  /* box-shadow: 0 4px 10px rgb(0, 0, 0, 0.2); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
   /* เพิ่มมาใหม่ */
+  width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -57,13 +56,13 @@ h3 {
   overflow: hidden;
 }
 
-/* #info {
+#info {
   position: absolute;
   top: 0;
   left: 0;
   padding: 10px;
   font-weight: bold;
-} */
+}
 
 #wheel {
   margin-top: 195px;
@@ -94,11 +93,10 @@ h3 {
             justify-content: center;
         } */
 
-/* .container {
+.container {
   display: flex;
   flex-direction: row;
-  height: 100vh;
-} */
+}
 
 .smallBox {
   border: 1px solid black;
@@ -117,17 +115,16 @@ h3 {
   /* border-radius: 15px; */
 }
 
-#card-container {
+#active {
   display: grid;
-  height: 100vh;
-  max-width: clamp(200px, 50%, 450px);
-  flex-direction: column;
+  max-height: 80vh;
+  max-width: min(50vw, 280px);
   place-content: center;
-  gap: 15px;
-  margin-bottom: 100px;
-  /* background-color: red; */
+  justify-items: center;
+  gap: 30px;
+  /* grid-template-rows: repeat(3, 0.2fr); */
 }
-#card-container img {
+#active img {
   width: 100%;
   height: auto;
   /* 803*1223 */
@@ -136,21 +133,6 @@ h3 {
   display: none;
   transform: rotateY(-90deg);
 }
-.container-info {
-  display: flex;
-  /* background-color: red; */
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  opacity: 0;
-}
-.meaning,
-.btn-meaning {
-  position: absolute;
-  top: 0;
-}
-
 .meaning,
 .name_card,
 .btn-meaning {
@@ -163,12 +145,6 @@ h3 {
 }
 .meaning {
   font-size: 14px;
-  /* height: 100px;
-  overflow: scroll; */
-}
-.btn-meaning {
-  padding: 10px;
-  border-radius: 10px;
 }
 @media (min-width: 320px) {
   .size-screen {
@@ -178,7 +154,7 @@ h3 {
 }
 @media (min-width: 375px) {
   .size-screen {
-    /* background-color: rgb(0, 0, 0); */
+    background-color: rgb(0, 0, 0);
     overflow: hidden;
   }
   #wheel {
@@ -192,29 +168,9 @@ h3 {
   .size-screen {
     /* background-color: rgb(4, 241, 24); */
   }
-  #card-container {
-    gap: 25px;
-    width: 500px;
-  }
-  .name_card {
-    font-size: 30px;
-  }
-
-  .meaning,
-  .btn-meaning {
-    font-size: 25px;
-  }
 }
 @media (min-width: 1024px) {
-  #card-container {
-    gap: 30px;
-  }
-  .name_card {
-    font-size: 35px;
-  }
-
-  .meaning,
-  .btn-meaning {
-    font-size: 30px;
+  .size-screen {
+    /* background-color: rgb(154, 4, 241); */
   }
 }
