@@ -105,17 +105,15 @@ h3 {
 
 .image-box {
   /* height: 170px; */
-  /* display: block; */
-  width: 100%;
   height: 200px;
-  display: block;
+
+  /* width: 100%; 
+   display: block;   make card  select wrong item on ios not sure why... */
+
   object-fit: contain;
   object-position: center;
-  touch-action: auto;
-  pointer-events: auto;
   filter: drop-shadow(4px 6px 8px #00000074);
-
-  /* border-radius: 15px; */
+  border-radius: 15px;
 }
 
 #card-container {
@@ -141,6 +139,8 @@ h3 {
 .front-card {
   display: none;
   transform: rotateY(-90deg);
+  /* filter: drop-shadow(4px 6px 8px #00000074);
+  border-radius: 20px; */
 }
 .container-info {
   display: flex;
@@ -156,7 +156,9 @@ h3 {
   position: absolute;
   top: 0;
 }
-
+.btn-meaning {
+  pointer-events: none;
+}
 .meaning,
 .name_card,
 .btn-meaning {
@@ -174,6 +176,20 @@ h3 {
   padding: 10px;
   border-radius: 10px;
 }
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #666;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 @media (min-width: 320px) {
   .size-screen {
     /* background-color: rgb(255, 136, 0); */
