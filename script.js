@@ -78,7 +78,7 @@ function createBox(i) {
   ).appendTo(box);
   //img
   var image = $(
-    "<img class='image-box' src='./All_Pic/Tarot card/Card.png' alt='Card Image' loading='lazy'/>"
+    "<img class='image-box' src='./images/back/Card.png' alt='Card Image' loading='lazy'/>"
   ).appendTo(box);
 
   image.on("load", function () {
@@ -161,7 +161,7 @@ cards.forEach((selectCard, index) => {
     e.preventDefault();
     if (isCardClicked) return;
 
-    console.log("Card clicked:", index);
+    // console.log("Card clicked:", index);
     // const f = document.querySelector(".test");
     // f.innerHTML = "Select :" + index;
     draggableWheel[0].disable(); //ปิดการหมุน
