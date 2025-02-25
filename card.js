@@ -5,8 +5,11 @@ let userData = JSON.parse(localStorage.getItem("userData")) || {
   isPlay: false,
   time: Date.now(),
 };
-let shortDate = new Date(userData.time).toLocaleDateString("th-TH");
-console.log("The day is today:", shortDate);
+let savedDate = new Date(userData.time).toLocaleDateString("th-TH");
+console.log("The saved date is:", savedDate);
+
+let currentDate = new Date().toLocaleDateString("th-TH");
+console.log("The current date is:", currentDate);
 
 const loadCards = async () => {
   let cardsData = [];
@@ -35,17 +38,23 @@ const saveData = () => {
   localStorage.setItem("userData", JSON.stringify(userData));
   console.log("บันทึกข้อมูลเรียบร้อย:", userData);
 };
-const checkIsHavePlay = () => {
-  // ตรวจสอบว่าเล่นไปแล้วหรือยัง
-  console.log(userData.isPlay);
-
+const CheckIsNewDay = () => {
+  if (savedDate !== currentDate) {
+    userData.isPlay = false;
+    console.log(userData.isPlay);
+  }
+  displayPlayStatus();
+};
+const displayPlayStatus = () => {
   if (!userData.isPlay) {
     console.log("Let play!");
   } else {
+    const block = document.querySelector("#block");
+    block.style.display = "grid";
     console.log("Too bad see you next time!");
   }
 };
 
-if (!checkIsHavePlay()) loadCards();
+if (!CheckIsNewDay()) loadCards();
 
 export { cardSelect, saveData };

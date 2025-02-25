@@ -1,4 +1,4 @@
-import { cardSelect } from "./card.js";
+import { cardSelect, saveData } from "./card.js";
 
 var wheel = $("#wheel");
 let isWheelSpun = false;
@@ -154,6 +154,10 @@ const meaning = document.querySelector(".meaning");
 const cardName = document.querySelector(".name_card");
 const btn = document.querySelector(".btn-meaning");
 const containerInfo = document.querySelector(".container-info ");
+const btnNext = document.querySelector(".btn-next");
+const footer = document.querySelector("footer");
+const messageReminder = document.querySelector(".message-reminder");
+
 let isCardClicked = false;
 
 cards.forEach((selectCard, index) => {
@@ -278,6 +282,7 @@ cards.forEach((selectCard, index) => {
 
         btn.addEventListener("click", (e) => {
           e.preventDefault();
+          saveData();
           const tl = gsap.timeline();
           tl.to(btn, {
             opacity: 0,
@@ -286,15 +291,39 @@ cards.forEach((selectCard, index) => {
             onComplete: () => {
               gsap.set(meaning, { display: "flex" });
               gsap.set(btn, { display: "none" });
+              gsap.set(footer, { display: "flex" });
             },
-          }).to(meaning, {
-            opacity: 1,
-            duration: 0.8,
-            ease: "power2.out",
-          });
+          })
+            .to(meaning, {
+              opacity: 1,
+              duration: 0.8,
+              ease: "power2.out",
+            })
+            .to(footer, {
+              opacity: 1,
+              duration: 0.8,
+              ease: "power2.out",
+            });
         });
       },
       { once: true }
     );
+  });
+});
+btnNext.addEventListener("click", (e) => {
+  e.preventDefault();
+  const tl = gsap.timeline();
+  tl.to([cardContainer, footer], {
+    duration: 0.8,
+    opacity: 0,
+    ease: "power2.out",
+    onComplete: () => {
+      gsap.set(cardContainer, { display: "none" });
+      gsap.set(messageReminder, { display: "flex" });
+    },
+  }).to(messageReminder, {
+    duration: 0.8,
+    opacity: 1,
+    ease: "power2.out",
   });
 });

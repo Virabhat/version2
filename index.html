@@ -21,6 +21,9 @@
 <body>
     <div class="size-screen">
         <!-- <h1 class="test"></h1> -->
+        <div id="block">
+            <p>คุณได้สุ่มดูดวงสำหรับวันนี้ไปแล้ว</p>
+        </div>
         <div id="card-container">
             <h3 class="name_card">ชื่อไพ่</h3>
             <img src="/images/front/aw_tarot_1.webp" alt="Tarot Card" class="front-card" loading="lazy">
@@ -31,10 +34,15 @@
                 <button class="btn-meaning">คลิกเพื่ออ่านความหมาย</button>
             </div>
         </div>
-
         <div id="wheel"></div>
 
         <div id="object"></div> <!-- Remove extra space -->
+        <div class="message-reminder">
+            <p>พรุ่งนี้มาเล่นอีกนะ 😊</p>
+        </div>
+        <footer>
+            <button class="btn-next">คลิกเพื่อไปต่อ</button>
+        </footer>
     </div>
 
     <script type="module" src="script.js"></script>
